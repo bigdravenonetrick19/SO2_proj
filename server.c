@@ -53,6 +53,41 @@ void pregateste_joc() {
         joc.players[p].hand_size = 0;
         joc.players[p].is_alive = 1;
     }
+    // 3. Initializam jucatorii
+    for (int p = 0; p < 2; p++) {
+        joc.players[p].hand_size = 0;
+        joc.players[p].is_alive = 1;
+    }
+
+    // 4. Le dam cate un Defuse fiecaruia
+    for (int p = 0; p < 2; p++) {
+        joc.players[p].hand[joc.players[p].hand_size++] = (Card){DEFUSE, "Defuse"};
+    }
+    // Punem restul de 4 Defuse in pachet
+    for (int i = 0; i < 4; i++) {
+        joc.deck[joc.deck_size++] = (Card){DEFUSE, "Defuse"};
+    }
+
+    // 5. Amestecam iar
+    amesteca_pachet();
+
+    // 6. Impartim cate 4 carti fiecarui jucator
+    for (int p = 0; p < 2; p++) {
+        for (int i = 0; i < 4; i++) {
+            joc.players[p].hand[joc.players[p].hand_size++] = joc.deck[--joc.deck_size];
+        }
+    }
+
+    // 7. Punem o singura pisica exploziva in pachet (pentru 2 jucatori)
+    joc.deck[joc.deck_size++] = (Card){EXPLODING_KITTEN, "Exploding Kitten"};
+
+    // 8. Ultima amestecare
+    amesteca_pachet();
+
+    // Setam randul primului jucator
+    joc.current_turn = 0;
+    joc.game_running = 1;
+}
 
 int main(void)
 {
