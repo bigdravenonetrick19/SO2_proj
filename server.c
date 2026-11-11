@@ -4,7 +4,7 @@
 
 #include "exploding_kittens.h"
 
-// Avem un singur joc global pentru a simplifica lucrurile
+// Avem un singur joc global
 Game joc;
 
 // Functie simpla pentru a amesteca pachetul de carti (algoritmul Fisher-Yates)
